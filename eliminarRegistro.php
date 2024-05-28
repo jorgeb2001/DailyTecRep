@@ -1,4 +1,6 @@
 <?php
+ob_start(); // Inicia el almacenamiento en búfer de salida
+
 // Verificar si se recibió el parámetro "no_control" en la URL
 if (isset($_GET['no_control'])) {
     // Obtener el número de control de la URL y realizar la sanitización si es necesario
@@ -35,15 +37,10 @@ if (isset($_GET['no_control'])) {
 
         // Confirmar la transacción
         sqlsrv_commit($con);
-        header("Location: gestionU.php");
-    exit();
-
     } catch (Exception $e) {
         // Revertir la transacción en caso de error
         sqlsrv_rollback($con);
         echo "Error al intentar eliminar el registro: " . $e->getMessage();
-        header("Location: gestionU.php");
-        exit();
     }
 
     // Redirigir de vuelta a la página de gestión después de eliminar el registro
@@ -54,4 +51,14 @@ if (isset($_GET['no_control'])) {
     header("Location: gestionU.php");
     exit();
 }
-
+ob_end_flush(); // Enviar el contenido del búfer de salida y desactivarlo
+?>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+</head>
+<body>
+</body>
+</html>
