@@ -142,7 +142,7 @@ if ($stmt) {
 </head>
 <body>
     <div id="div1">
-        <a href="index.php"><img src="images/flecha.png" alt="flecha" class="iconoflecha"> Regresar</a>
+        <a href="indexE.php"><img src="images/flecha.png" alt="flecha" class="iconoflecha"> Regresar</a>
     </div>
     <div class="container">
         <h2>Información de Usuarios</h2>
