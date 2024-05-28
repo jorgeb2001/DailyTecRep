@@ -16,23 +16,38 @@ if (isset($_GET['no_control'])) {
         // Obtener el idUsuario basado en no_control
         $query = "SELECT idUsuario FROM Usuario WHERE no_control = ?";
         $stmt = sqlsrv_prepare($con, $query, array($no_control));
+        if (!$stmt) {
+            throw new Exception('Error preparando la consulta: ' . print_r(sqlsrv_errors(), true));
+        }
         sqlsrv_execute($stmt);
         $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+        if (!$row) {
+            throw new Exception('Usuario no encontrado.');
+        }
         $idUsuario = $row['idUsuario'];
 
         // Eliminar registros relacionados en la tabla Asistencia
         $query = "DELETE FROM Asistencia WHERE fk_alumno = ?";
         $stmt = sqlsrv_prepare($con, $query, array($idUsuario));
+        if (!$stmt) {
+            throw new Exception('Error preparando la consulta de eliminación de Asistencia: ' . print_r(sqlsrv_errors(), true));
+        }
         sqlsrv_execute($stmt);
 
         // Eliminar registros relacionados en la tabla Actividad
         $query = "DELETE FROM Actividad WHERE fk_creador = ?";
         $stmt = sqlsrv_prepare($con, $query, array($idUsuario));
+        if (!$stmt) {
+            throw new Exception('Error preparando la consulta de eliminación de Actividad: ' . print_r(sqlsrv_errors(), true));
+        }
         sqlsrv_execute($stmt);
 
         // Finalmente, eliminar el registro en la tabla Usuario
         $query = "DELETE FROM Usuario WHERE idUsuario = ?";
         $stmt = sqlsrv_prepare($con, $query, array($idUsuario));
+        if (!$stmt) {
+            throw new Exception('Error preparando la consulta de eliminación de Usuario: ' . print_r(sqlsrv_errors(), true));
+        }
         sqlsrv_execute($stmt);
 
         // Confirmar la transacción
