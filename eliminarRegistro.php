@@ -3,11 +3,11 @@ ob_start(); // Inicia el almacenamiento en búfer de salidas
 
 // Verificar si se recibió el parámetro "no_control" en la URL
 if (isset($_GET['no_control'])) {
-    // Obtener el número de control de la URL y realizar la sanitización si es necesario
-    $no_control = $_GET['no_control'];
+    // Obtener el número de control de la URL y realizar la sanitización
+    $no_control = filter_var($_GET['no_control'], FILTER_SANITIZE_STRING);
 
-    // Aquí va tu código para conectar a la base de datos y ejecutar la consulta para eliminar el registro
-    include('conexion.php'); // Asegúrate de incluir tu archivo de conexión
+    // Incluir el archivo de conexión a la base de datos
+    include('conexion.php');
 
     // Iniciar una transacción
     sqlsrv_begin_transaction($con);
@@ -52,28 +52,20 @@ if (isset($_GET['no_control'])) {
 
         // Confirmar la transacción
         sqlsrv_commit($con);
+
+        // Redirigir de vuelta a la página de gestión después de eliminar el registro con mensaje de éxito
+        header("Location: gestU.php?msg=success");
+        exit();
     } catch (Exception $e) {
         // Revertir la transacción en caso de error
         sqlsrv_rollback($con);
-        echo "Error al intentar eliminar el registro: " . $e->getMessage();
+        header("Location: gestU.php?msg=error&error=" . urlencode($e->getMessage()));
+        exit();
     }
-
-    // Redirigir de vuelta a la página de gestión después de eliminar el registro
-    header("Location: gestU.php");
-    exit();
 } else {
     // Si no se proporcionó el parámetro "no_control", redirigir a una página de error o a la página de gestión
-    header("Location: gestU.php");
+    header("Location: gestU.php?msg=error&error=missing_param");
     exit();
 }
 ob_end_flush(); // Enviar el contenido del búfer de salida y desactivarlo
 ?>
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Documento sin título</title>
-</head>
-<body>
-</body>
-</html>
