@@ -1,5 +1,5 @@
 <?php
-ob_start(); // Inicia el almacenamiento en búfer de salida
+ob_start(); // Inicia el almacenamiento en búfer de salidas
 
 // Verificar si se recibió el parámetro "no_control" en la URL
 if (isset($_GET['no_control'])) {
