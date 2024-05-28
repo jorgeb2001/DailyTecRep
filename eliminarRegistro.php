@@ -35,12 +35,15 @@ if (isset($_GET['no_control'])) {
 
         // Confirmar la transacción
         sqlsrv_commit($con);
-        echo "El registro ha sido eliminado correctamente.";
+        header("Location: gestionU.php");
+    exit();
 
     } catch (Exception $e) {
         // Revertir la transacción en caso de error
         sqlsrv_rollback($con);
         echo "Error al intentar eliminar el registro: " . $e->getMessage();
+        header("Location: gestionU.php");
+        exit();
     }
 
     // Redirigir de vuelta a la página de gestión después de eliminar el registro
@@ -51,13 +54,4 @@ if (isset($_GET['no_control'])) {
     header("Location: gestionU.php");
     exit();
 }
-?>
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Documento sin título</title>
-</head>
-<body>
-</body>
-</html>
+
