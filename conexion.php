@@ -1,9 +1,9 @@
 <?php
-	$servername = 'LAPTOP-S757GQ2H\DAILYTECDB';
+	$servername = 'dailytecserver';
 	$conexion = array(
 		"Database" => "DailyTecDB",
-		"UID" => 'sa',
-		"PWD" => '246802',
+		"UID" => 'DailyTec',
+		"PWD" => 'Lagoblue_1',
 		"CharacterSet" => "UTF-8"
 	);
 
