@@ -44,11 +44,11 @@ if (isset($_GET['no_control'])) {
     }
 
     // Redirigir de vuelta a la página de gestión después de eliminar el registro
-    header("Location: gestionU.php");
+    header("Location: gestU.php");
     exit();
 } else {
     // Si no se proporcionó el parámetro "no_control", redirigir a una página de error o a la página de gestión
-    header("Location: gestionU.php");
+    header("Location: gestU.php");
     exit();
 }
 ob_end_flush(); // Enviar el contenido del búfer de salida y desactivarlo
