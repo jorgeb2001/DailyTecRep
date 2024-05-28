@@ -146,6 +146,15 @@ if ($stmt) {
     </div>
     <div class="container">
         <h2>Información de Usuarios</h2>
+        <?php
+        if (isset($_GET['msg'])) {
+            if ($_GET['msg'] == 'success') {
+                echo '<p style="color: green;">El registro ha sido eliminado correctamente.</p>';
+            } elseif ($_GET['msg'] == 'error') {
+                echo '<p style="color: red;">Error al intentar eliminar el registro.</p>';
+            }
+        }
+        ?>
         <table>
             <tr>
                 <th>Número de control</th>
@@ -171,14 +180,10 @@ if ($stmt) {
     </div>
 
     <script>
-        function eliminarRegistro(noctrl) {
+        function eliminarRegistro(no_control) {
             if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
-                window.location.href = "gestU.php?eliminar=" + noctrl;
+                window.location.href = "eliminar.php?no_control=" + no_control;
             }
-        }
-
-        function editarRegistro(noctrl) {
-            window.location.href = "editar.php?editar=" + noctrl;
         }
     </script>
 </body>
