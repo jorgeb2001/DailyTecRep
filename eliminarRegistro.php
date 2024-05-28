@@ -2,23 +2,50 @@
 // Verificar si se recibió el parámetro "no_control" en la URL
 if (isset($_GET['no_control'])) {
     // Obtener el número de control de la URL y realizar la sanitización si es necesario
-    $no_control = htmlspecialchars($_GET['no_control'], ENT_QUOTES, 'UTF-8');
+    $no_control = $_GET['no_control'];
 
     // Aquí va tu código para conectar a la base de datos y ejecutar la consulta para eliminar el registro
     include('conexion.php'); // Asegúrate de incluir tu archivo de conexión
 
-    // Consulta SQL para eliminar el registro basado en el número de control
-    $query = "DELETE FROM usuario WHERE no_control = ?";
-    $stmt = sqlsrv_prepare($con, $query, array($no_control));
+    // Iniciar una transacción
+    sqlsrv_begin_transaction($con);
 
-    if ($stmt) {
-        if (sqlsrv_execute($stmt)) {
-            echo "El registro ha sido eliminado correctamente.";
-        } else {
-            echo "Error al intentar eliminar el registro: " . print_r(sqlsrv_errors(), true);
-        }
-    } else {
-        echo "Error al preparar la consulta SQL: " . print_r(sqlsrv_errors(), true);
+    try {
+        // Obtener el idUsuario basado en no_control
+        $query = "SELECT idUsuario FROM Usuario WHERE no_control = ?";
+        $stmt = sqlsrv_prepare($con, $query, array($no_control));
+        sqlsrv_execute($stmt);
+        $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+        $idUsuario = $row['idUsuario'];
+
+        // Eliminar registros relacionados en la tabla Asistencia
+        $query = "DELETE FROM Asistencia WHERE fk_alumno = ?";
+        $stmt = sqlsrv_prepare($con, $query, array($idUsuario));
+        sqlsrv_execute($stmt);
+
+        // Eliminar registros relacionados en la tabla Alumno
+        $query = "DELETE FROM Alumno WHERE fk_usuario = ?";
+        $stmt = sqlsrv_prepare($con, $query, array($idUsuario));
+        sqlsrv_execute($stmt);
+
+        // Eliminar registros relacionados en la tabla Actividad
+        $query = "DELETE FROM Actividad WHERE fk_creador = ?";
+        $stmt = sqlsrv_prepare($con, $query, array($idUsuario));
+        sqlsrv_execute($stmt);
+
+        // Finalmente, eliminar el registro en la tabla Usuario
+        $query = "DELETE FROM Usuario WHERE idUsuario = ?";
+        $stmt = sqlsrv_prepare($con, $query, array($idUsuario));
+        sqlsrv_execute($stmt);
+
+        // Confirmar la transacción
+        sqlsrv_commit($con);
+        echo "El registro ha sido eliminado correctamente.";
+
+    } catch (Exception $e) {
+        // Revertir la transacción en caso de error
+        sqlsrv_rollback($con);
+        echo "Error al intentar eliminar el registro: " . $e->getMessage();
     }
 
     // Redirigir de vuelta a la página de gestión después de eliminar el registro
@@ -30,3 +57,12 @@ if (isset($_GET['no_control'])) {
     exit();
 }
 ?>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+</head>
+<body>
+</body>
+</html>
