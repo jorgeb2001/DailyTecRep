@@ -7,17 +7,15 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
-// Si hay sesión, recuperar ID del usuario
-$id = $_SESSION['id'];
 include('conexion.php');
 
-// Consulta SQL para obtener datos del usuario basado en el ID
+// Consulta SQL para obtener todos los datos de los usuarios
 $queryuser = "SELECT u.nombre AS nom_usuario, u.apellido_paterno, u.apellido_materno, u.no_control, u.correo, c.nombre AS nom_carrera
               FROM usuario u
               INNER JOIN alumno a ON a.fk_usuario = u.idUsuario
-              INNER JOIN carrera c on c.idCarrera = a.fk_carrera";
+              INNER JOIN carrera c ON c.idCarrera = a.fk_carrera";
 
-$stmt = sqlsrv_prepare($con, $queryuser, array(&$id));
+$stmt = sqlsrv_prepare($con, $queryuser);
 
 if ($stmt) {
     sqlsrv_execute($stmt);
@@ -147,7 +145,7 @@ if ($stmt) {
         <a href="index.php"><img src="images/flecha.png" alt="flecha" class="iconoflecha"> Regresar</a>
     </div>
     <div class="container">
-        <h2>Información de Usuario</h2>
+        <h2>Información de Usuarios</h2>
         <table>
             <tr>
                 <th>Número de control</th>
