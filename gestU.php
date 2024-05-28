@@ -182,7 +182,7 @@ if ($stmt) {
     <script>
         function eliminarRegistro(no_control) {
             if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
-                window.location.href = "eliminar.php?no_control=" + no_control;
+                window.location.href = "eliminarRegistro.php?no_control=" + no_control;
             }
         }
     </script>
