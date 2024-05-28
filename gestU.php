@@ -151,7 +151,8 @@ if ($stmt) {
             if ($_GET['msg'] == 'success') {
                 echo '<p style="color: green;">El registro ha sido eliminado correctamente.</p>';
             } elseif ($_GET['msg'] == 'error') {
-                echo '<p style="color: red;">Error al intentar eliminar el registro.</p>';
+                $error_message = isset($_GET['error']) ? htmlspecialchars($_GET['error']) : 'Error al intentar eliminar el registro.';
+                echo '<p style="color: red;">' . $error_message . '</p>';
             }
         }
         ?>
@@ -182,7 +183,7 @@ if ($stmt) {
     <script>
         function eliminarRegistro(no_control) {
             if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
-                window.location.href = "eliminarRegistro.php?no_control=" + no_control;
+                window.location.href = "eliminarRegistro.php?no_control=" + encodeURIComponent(no_control);
             }
         }
     </script>
