@@ -15,8 +15,7 @@ include('conexion.php');
 $queryuser = "SELECT u.nombre AS nom_usuario, u.apellido_paterno, u.apellido_materno, u.no_control, u.correo, c.nombre AS nom_carrera
               FROM usuario u
               INNER JOIN alumno a ON a.fk_usuario = u.idUsuario
-              INNER JOIN carrera c on c.idCarrera = a.fk_carrera
-              WHERE a.fk_usuario = ?;";
+              INNER JOIN carrera c on c.idCarrera = a.fk_carrera";
 
 $stmt = sqlsrv_prepare($con, $queryuser, array(&$id));
 
