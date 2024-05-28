@@ -42,6 +42,14 @@ if (isset($_GET['no_control'])) {
         }
         sqlsrv_execute($stmt);
 
+        // Eliminar registros relacionados en la tabla Alumno
+        $query = "DELETE FROM Alumno WHERE fk_usuario = ?";
+        $stmt = sqlsrv_prepare($con, $query, array($idUsuario));
+        if (!$stmt) {
+            throw new Exception('Error preparando la consulta de eliminación de Alumno: ' . print_r(sqlsrv_errors(), true));
+        }
+        sqlsrv_execute($stmt);
+
         // Finalmente, eliminar el registro en la tabla Usuario
         $query = "DELETE FROM Usuario WHERE idUsuario = ?";
         $stmt = sqlsrv_prepare($con, $query, array($idUsuario));
