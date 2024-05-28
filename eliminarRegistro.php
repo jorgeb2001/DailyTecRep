@@ -23,11 +23,6 @@ if (isset($_GET['no_control'])) {
         $stmt = sqlsrv_prepare($con, $query, array($idUsuario));
         sqlsrv_execute($stmt);
 
-        // Eliminar registros relacionados en la tabla Alumno
-        $query = "DELETE FROM Alumno WHERE fk_usuario = ?";
-        $stmt = sqlsrv_prepare($con, $query, array($idUsuario));
-        sqlsrv_execute($stmt);
-
         // Eliminar registros relacionados en la tabla Actividad
         $query = "DELETE FROM Actividad WHERE fk_creador = ?";
         $stmt = sqlsrv_prepare($con, $query, array($idUsuario));
