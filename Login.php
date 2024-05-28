@@ -45,6 +45,9 @@
         <div class="form-group offset-xl-0 col-xl-12" style="text-align: center;">
             <button class="btn-custom" type="submit" id="loginAlumno">Ingresar</button>
         </div>
+		<div style="text-align: center; color: #F27A22;">
+            <a href="reg.php" class="color">¿No tienes una cuenta? Registrarse &nbsp; &nbsp;</a>
+        </div>
         <div style="text-align: center; color: #F27A22;">
             <a href="LoginA.php" class="color">Ingresar como Administrador&nbsp; &nbsp;</a>
         </div>
