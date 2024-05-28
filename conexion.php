@@ -1,5 +1,5 @@
 <?php
-	$servername = 'dailytecserver';
+	$servername = 'dailytecserver.database.windows.net';
 	$conexion = array(
 		"Database" => "DailyTecDB",
 		"UID" => 'DailyTec',
