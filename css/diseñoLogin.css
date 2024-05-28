@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+
+.div-inicio {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	color: orange;
+	text-align: center;
+}
+
+
+.link-negro {
+    color: black;
+	color: inherit; 
+    text-decoration: none;
+}
+
+.notification {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ff0000;
+            color: #ffffff;
+            padding: 10px;
+            text-align: center;
+            display: none;
+}
+

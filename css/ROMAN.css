@@ -1,0 +1,137 @@
+
+
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.navbar {
+    background-color: #333;
+    border-bottom: 2px solid orange;
+}
+
+.nav-link, .navbar-brand, .dropdown-item {
+    color: white !important;
+}
+
+.navbar-brand img.size, .nav-item img.size2 {
+    max-height: 40px;
+}
+
+.iconoflecha {
+    max-height: 20px;
+}
+
+.principal {
+    padding: 20px;
+    background-color: #222;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 800px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+h2.datoseventotitulo {
+    color: whitesmoke;
+    text-align: center;
+}
+
+label {
+    color: white;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-control, .form-control-file {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: white;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-left: 10px;
+}
+
+button.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: orange;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.btn:hover {
+    background-color: #e69500;
+}
+
+#cuadrito {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#vista-previa-imagen {
+    max-width: 100%;
+    margin-top: 10px;
+    display: none;
+}
+
+.form-horizontal .form-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.form-horizontal .form-group label {
+    width: 20%;
+}
+
+.form-horizontal .form-group .col-sm-10, 
+.form-horizontal .form-group .col-sm-4, 
+.form-horizontal .form-group .col-sm-2 {
+    width: 80%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.form-horizontal .form-group .col-sm-4 {
+    width: 35%;
+}
+
+.form-horizontal .form-group .col-sm-2 {
+    width: 15%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.btn-submit {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: orange;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 auto; /* Centrará el botón */
+    display: block; /* Para asegurarse de que se trata como un elemento de bloque */
+}
+
+.btn-submit:hover {
+    background-color: #e69500;
+}
