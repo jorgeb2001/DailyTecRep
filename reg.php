@@ -110,7 +110,7 @@
                           <button type="submit" class="btn-custom" name="reg", id="reg">Registrarse
                             </button>
 			
-                          <a href="Login.php">¿Ya tienes una cuenta?</a>
+                          <a href="login.php">¿Ya tienes una cuenta?</a>
                           <div>&nbsp;</div>
                           <div>&nbsp;</div>
                           <div>©DailyTec 2024. Derechos reservados. Tepic, Nayarit. MÉXICO.</div>
