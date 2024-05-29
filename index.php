@@ -54,7 +54,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2 py-lg-0 px-lg-5">
         <a class="navbar-brand"><img src="images/escudo.png" class="size"></a>
-        <a href="index.html" class="navbar-brand"><img src="images/dailytec.jfif" class="size"></a> 
+        <a href="index.php" class="navbar-brand"><img src="images/dailytec.jfif" class="size"></a> 
         <div class="collapse navbar-collapse" id="navbarSupportedContent1">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item"><a class="nav-link" href="index.php">EVENTOS</a></li>
