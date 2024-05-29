@@ -11,7 +11,7 @@ $stmtAsistencias = sqlsrv_query($con, $queryAsistencias, $paramsAsistencias);
 
 if ($stmtAsistencias === false) {
     header("Location: index.php");
-exit;
+    exit;
 }
 
 // Eliminar las actividades relacionadas
@@ -21,7 +21,7 @@ $stmtActividades = sqlsrv_query($con, $queryActividades, $paramsActividades);
 
 if ($stmtActividades === false) {
     header("Location: index.php");
-exit;
+    exit;
 }
 
 // Eliminar el evento
@@ -31,7 +31,7 @@ $stmtEvento = sqlsrv_query($con, $queryEvento, $paramsEvento);
 
 if ($stmtEvento === false) {
     header("Location: index.php");
-exit;
+    exit;
 }
 
 header("Location: index.php");
