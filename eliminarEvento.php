@@ -4,43 +4,36 @@ include('conexion.php');
 
 $idEvento = $_GET['id'];
 
-// Función para manejar errores y redirigir en caso de fallo
-function manejarError($stmt, $con) {
-    if ($stmt === false) {
-        // Obtener y mostrar errores de SQL Server
-        if (($errors = sqlsrv_errors()) != null) {
-            foreach ($errors as $error) {
-                echo "SQLSTATE: " . $error['SQLSTATE'] . "<br>";
-                echo "code: " . $error['code'] . "<br>";
-                echo "message: " . $error['message'] . "<br>";
-            }
-        }
-        sqlsrv_close($con);
-        header("Location: index.php");
-        exit;
-    }
-}
-
 // Eliminar las asistencias relacionadas con las actividades del evento
 $queryAsistencias = "DELETE FROM Asistencia WHERE fk_actividad IN (SELECT idActividad FROM Actividad WHERE fk_evento = ?)";
 $paramsAsistencias = array($idEvento);
 $stmtAsistencias = sqlsrv_query($con, $queryAsistencias, $paramsAsistencias);
-manejarError($stmtAsistencias, $con);
+
+if ($stmtAsistencias === false) {
+    echo "Error al eliminar las asistencias: ";
+    die(print_r(sqlsrv_errors(), true));
+}
 
 // Eliminar las actividades relacionadas
 $queryActividades = "DELETE FROM Actividad WHERE fk_evento = ?";
 $paramsActividades = array($idEvento);
 $stmtActividades = sqlsrv_query($con, $queryActividades, $paramsActividades);
-manejarError($stmtActividades, $con);
+
+if ($stmtActividades === false) {
+    echo "Error al eliminar las actividades: ";
+    die(print_r(sqlsrv_errors(), true));
+}
 
 // Eliminar el evento
 $queryEvento = "DELETE FROM Evento WHERE idEvento = ?";
 $paramsEvento = array($idEvento);
 $stmtEvento = sqlsrv_query($con, $queryEvento, $paramsEvento);
-manejarError($stmtEvento, $con);
 
-sqlsrv_close($con);
+if ($stmtEvento === false) {
+    echo "Error al eliminar el evento: ";
+    die(print_r(sqlsrv_errors(), true));
+}
+
 header("Location: index.php");
 exit;
 ?>
-
