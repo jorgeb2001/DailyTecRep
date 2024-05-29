@@ -1,7 +1,6 @@
 <?php
 include('auth.php');
 include('conexion.php');
-
 // Recuperar los datos del evento
 $idEvento = $_GET['idEvento']; // Obtener el id del evento de la URL
 $query = "SELECT * FROM Evento WHERE idEvento = ?";
