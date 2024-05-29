@@ -1,12 +1,12 @@
 
-
+<!DOCTYPE html>
 <?php
     include('auth.php');
     include('conexion.php');
 ?>
 
 
-<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
